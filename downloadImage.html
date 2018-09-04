@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    html,body{
+      padding: 0;
+      margin:0;
+      width: 100%;
+      height: 100%;
+    }
+    body{
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      align-items: flex-end;
+    }
+    div {
+      margin:-30px -50px;
+      top:50%;
+      left: 50%;
+      position: fixed;
+      text-align: center;
+      width: 100px;
+      height: 60px;
+      box-shadow:  0 0 20px 1px black;
+      line-height: 60px;
+      cursor:pointer;
+      transition: .5s;
+    }
+
+    div:nth-of-type(1) {
+      margin-left:-200px;
+    }
+
+    div:nth-of-type(3) {
+      margin-left:100px;
+    }
+
+    div:hover{
+      box-shadow:  0 0 20px 1px black inset;
+    }
+
+    span {
+      position: fixed;
+      top:50%;
+      margin-top:-50px;
+      height: 100px;
+      width: 100%;
+      background-color:black;
+      color:white;
+      font-size: 80px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 100px;
+      transition: .5s;
+    }
+
+    span:after {
+      text-align: left;
+      position: absolute;
+      width: 100px;
+      overflow: hidden;
+      vertical-align: bottom;
+      animation: loading 2s steps(3) infinite;
+      content: attr(data-text);
+    }
+
+    @keyframes loading {
+      0%{
+        width: 0px;
+      }
+      50%{
+        width: 60px;
+      }
+      100%{
+        width: 100px;
+      }
+    }
+
+  </style>
+  <title>downloadImage</title>
+</head>
+<body>
+  <div class="OneByOne">OneByOne</div>
+  <div class="TwoByTwo">TwoByTwo</div>
+  <div class="Max4">Max4</div>
+  <script type="text/javascript" src="downloadImage.js"></script>
+</body>
+</html>
