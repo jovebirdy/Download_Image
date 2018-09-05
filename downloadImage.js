@@ -41,7 +41,7 @@ function downloadOneByOne(i = 1) {
       document.dispatchEvent(event)
       if (i < imgs.length) downloadOneByOne(i + 1)
       else {
-        span.textContent = i + "张图片已全部加载完成！"
+        span.textContent = imgs.length + "张图片已全部加载完成！"
         span.dataset.text = ""
       }
     }
@@ -67,7 +67,7 @@ function downloadTwoByTwo(i = 1) {
       document.dispatchEvent(event)
       judge--
       if (i === imgs.length - 1 && judge === 0) {
-        span.textContent = i + 1 + "张图片已全部加载完成！"
+        span.textContent = imgs.length + "张图片已全部加载完成！"
         span.dataset.text = ""
       }
       if (judge === 0 && i < imgs.length - 1) downloadTwoByTwo(i + 2)
@@ -89,6 +89,10 @@ function downloadMax4(i = 1) {
         document.dispatchEvent(event)
         judge--
         num++
+        if (num === imgs.length) {
+          span.textContent = imgs.length + "张图片已全部加载完成！"
+          span.dataset.text = ""
+        }
       }
       node.src = "https://xieranmaya.github.io/images/cats/" + imgs[i - 1].url
       judge++
@@ -96,9 +100,7 @@ function downloadMax4(i = 1) {
     }
   }
   let load = setInterval(() => {
-      if (num === imgs.length) {
-        span.textContent = i - 1 + "张图片已全部加载完成！"
-        span.dataset.text = ""
+      if (i > imgs.length) {
         clearInterval(load)
         return
       } 
