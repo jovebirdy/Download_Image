@@ -2,6 +2,11 @@ let url = "https://xieranmaya.github.io/images/cats/cats.json"
 let imgs
 let span = document.createElement("span")
 let divs = document.body.getElementsByTagName("div")
+let event = new Event('Widthchange')
+document.addEventListener('Widthchange', () => {
+  document.documentElement.scrollLeft = document.body.scrollWidth - document.body.offsetWidth
+});
+
 span.textContent = "加载中"
 span.dataset.text = "..."
 
@@ -16,7 +21,7 @@ function get(url, callback) {
   x.send()
 }
 
-
+ 
 document.onclick = (e) => {
   if (e.target.nodeName === "DIV") {
     Array.from(divs).forEach((node) => node.style.display = "none")
@@ -33,6 +38,7 @@ function downloadOneByOne(i = 1) {
     let node = document.createElement("img")
     node.onload = () => {
       document.body.appendChild(node)
+      document.dispatchEvent(event)
       if (i < imgs.length) downloadOneByOne(i + 1)
       else {
         span.textContent = i + "张图片已全部加载完成！"
@@ -58,6 +64,7 @@ function downloadTwoByTwo(i = 1) {
   nodes.forEach((node,index) => {
     node.onload = () => {
       document.body.appendChild(node)
+      document.dispatchEvent(event)
       judge--
       if (i === imgs.length - 1 && judge === 0) {
         span.textContent = i + 1 + "张图片已全部加载完成！"
@@ -79,6 +86,7 @@ function downloadMax4(i = 1) {
       span.textContent = `正在加载第${i}张图片`
       node.onload =  () => {
         document.body.appendChild(node)
+        document.dispatchEvent(event)
         judge--
         num++
       }
